@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="listMenu">
+        <item>Acelerômetro</item>
+        <item>Classificação Individual</item>
+        <item>Criação de Grupos</item>
+        <item>Classificação de Grupos</item>
+    </string-array>
+</resources>
