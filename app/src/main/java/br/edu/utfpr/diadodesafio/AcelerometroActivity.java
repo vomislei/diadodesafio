@@ -22,6 +22,7 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -38,6 +39,9 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
     private Chronometer cronometro;
     private TextView tvLatitude;
     private TextView tvLongitude;
+
+
+
 
 
     @Override
@@ -57,6 +61,8 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
         sm.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
 
         LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+
 
 
 
