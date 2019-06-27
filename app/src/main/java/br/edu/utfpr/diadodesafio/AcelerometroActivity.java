@@ -23,6 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -39,6 +43,11 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
     private Chronometer cronometro;
     private TextView tvLatitude;
     private TextView tvLongitude;
+    private Button btSalvar;
+
+    // Write a message to the database
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference();
 
 
 
@@ -56,11 +65,13 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
         tvLongitude = (TextView) findViewById(R.id.tvLongitude);
         cronometro = (Chronometer) findViewById(R.id.cronometro);
         btMonitoramento = (Button) findViewById(R.id.btMonitoramento);
+        btSalvar = (Button) findViewById(R.id.btSalvar);
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sm.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
 
         LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
 
 
 
@@ -168,5 +179,23 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
     @Override
     public void onProviderDisabled(String s) {
 
+    }
+
+    private void addRegitro(){
+
+        String media = tvNivel.getText().toString();
+        String latitude = tvLatitude.getText().toString();
+        String longitude = tvLatitude.getText().toString();
+        String id = myRef.push().getKey();
+
+        myRef.setValue(id);
+        myRef.setValue(media);
+        myRef.setValue(latitude);
+        myRef.setValue(longitude);
+
+    }
+
+    public void btSalvar(View view) {
+        addRegitro();
     }
 }

@@ -71,4 +71,10 @@
         android:onClick="btMonitoramento"
         android:text="Iniciar" />
 
+    <Button
+        android:id="@+id/btSalvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Salvar" />
+
 </LinearLayout>
