@@ -7,46 +7,68 @@
     android:orientation="vertical"
     tools:context=".AcelerometroActivity">
 
-<TextView
+    <TextView
 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Nível de movimentação:"
-    />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nível de movimentação:" />
 
-<TextView
-    android:id="@+id/tvNivel"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="0.000,00" />
+    <TextView
+        android:id="@+id/tvNivel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.000,00" />
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Tempo:" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tempo:" />
 
-<Chronometer
-    android:id="@+id/cronometro"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="00:00" />
+    <Chronometer
+        android:id="@+id/cronometro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00" />
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Contador:" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude:" />
 
-<TextView
-    android:id="@+id/tvContador"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="0.000,00" />
+    <TextView
+        android:id="@+id/tvLongitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.0" />
 
-<Button
-    android:id="@+id/btMonitoramento"
-    android:text="Iniciar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:onClick="btMonitoramento" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latitude:" />
+
+    <TextView
+        android:id="@+id/tvLatitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contador:" />
+
+    <TextView
+        android:id="@+id/tvContador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.000,00" />
+
+
+    <Button
+        android:id="@+id/btMonitoramento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btMonitoramento"
+        android:text="Iniciar" />
 
 </LinearLayout>
