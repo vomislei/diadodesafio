@@ -1,5 +1,7 @@
 package br.edu.utfpr.diadodesafio;
 
+import java.util.Date;
+
 public class Usuario {
 
     private String id;
@@ -16,13 +18,23 @@ public class Usuario {
     private String latitude;
     private String longitude;
     private Double media;
+    private String data;
 
-    public Usuario(String id, String email, String latitude, String longitude, Double media) {
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public Usuario(String id, String email, String latitude, String longitude, Double media,String data) {
         this.id = id;
         this.email = email;
         this.latitude = latitude;
         this.longitude = longitude;
         this.media = media;
+        this.data = data;
     }
 
     public String getLatitude() {

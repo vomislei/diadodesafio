@@ -147,7 +147,7 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
                 String longitude = tvLongitude.getText().toString();
 
                 String id = myRef.push().getKey();
-                Usuario usuario = new Usuario(id,user.getEmail(),latitude,longitude,media);
+                Usuario usuario = new Usuario(id,user.getEmail(),latitude,longitude,media,data);
                 myRef.child(id).setValue(usuario);
 
 
