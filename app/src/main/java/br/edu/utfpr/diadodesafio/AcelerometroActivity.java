@@ -24,6 +24,8 @@ import android.widget.Toast;
 
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -43,11 +45,13 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
     private Chronometer cronometro;
     private TextView tvLatitude;
     private TextView tvLongitude;
-    private Button btSalvar;
+
 
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference();
+    DatabaseReference myRef = database.getReference("usuarios");
+
+    private FirebaseAuth mAuth;
 
 
 
@@ -65,10 +69,11 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
         tvLongitude = (TextView) findViewById(R.id.tvLongitude);
         cronometro = (Chronometer) findViewById(R.id.cronometro);
         btMonitoramento = (Button) findViewById(R.id.btMonitoramento);
-        btSalvar = (Button) findViewById(R.id.btSalvar);
+
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sm.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
+        mAuth = FirebaseAuth.getInstance();
 
         LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
@@ -97,7 +102,8 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
             return;
-        }       lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+        }
+        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
 
     }
@@ -107,6 +113,10 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
         double x = sensorEvent.values[0];
         double y = sensorEvent.values[1];
         double z = sensorEvent.values[2];
+        Double media1 = 0.0;
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        //Usuario usuario = new Usuario(user.getEmail(),tvLatitude.getText().toString(),tvLongitude.getText().toString(),media1);
         if(iniciar == true) {
             countLeitura++;
             tvContador.setText(String.valueOf(countLeitura));
@@ -124,12 +134,23 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
                 countLeitura = 0;
                 double media = countxyz / 100;
 
+
+
+
                 //salvar essa media no banco
                 //  double media = (contadorx + contadory +contadorx) / 100;
                 //  double media = (contadorx + contadory +contadorx) / 3;
                 countxyz = 0;
 
                 tvNivel.setText(String.valueOf(media));
+                String latitude = tvLatitude.getText().toString();
+                String longitude = tvLongitude.getText().toString();
+
+                String id = myRef.push().getKey();
+                Usuario usuario = new Usuario(id,user.getEmail(),latitude,longitude,media);
+                myRef.child(id).setValue(usuario);
+
+
 
             }
         }
@@ -181,21 +202,7 @@ public class AcelerometroActivity extends AppCompatActivity implements SensorEve
 
     }
 
-    private void addRegitro(){
 
-        String media = tvNivel.getText().toString();
-        String latitude = tvLatitude.getText().toString();
-        String longitude = tvLatitude.getText().toString();
-        String id = myRef.push().getKey();
 
-        myRef.setValue(id);
-        myRef.setValue(media);
-        myRef.setValue(latitude);
-        myRef.setValue(longitude);
 
-    }
-
-    public void btSalvar(View view) {
-        addRegitro();
-    }
 }
