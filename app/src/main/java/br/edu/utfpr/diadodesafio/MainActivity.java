@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView lvMenu;
     private final  Class<?>[] menus = {
             AcelerometroActivity.class,
+            ListarActivity.class,
     };
 
     @Override

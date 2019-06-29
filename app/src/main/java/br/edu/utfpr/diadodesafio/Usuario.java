@@ -1,8 +1,9 @@
 package br.edu.utfpr.diadodesafio;
 
-import java.util.Date;
-
 public class Usuario {
+
+    public Usuario() {
+    }
 
     private String id;
 
